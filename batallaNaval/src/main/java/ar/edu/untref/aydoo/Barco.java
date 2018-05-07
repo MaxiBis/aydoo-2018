@@ -1,23 +1,27 @@
 package ar.edu.untref.aydoo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Barco {
+public abstract class Barco {
     protected List<Posicion> posiciones;
+    protected int tamanio;
 
+    public Barco(){
+        this.posiciones = new ArrayList<>();
+        tamanio = 0;
+    }
 
     public List<Posicion> getListaDePosiciones() {
-        return posiciones;
+        List<Posicion> posicionesEntregadas = posiciones;
+        return posicionesEntregadas;
     }
 
     public boolean estaEn(Posicion posicionComparada) {
-        List<Posicion> posiciones = this.getListaDePosiciones();
-        Posicion posicionDelCrucero;
         boolean salida = false;
-        for (ListIterator<Posicion> iterador = posiciones.listIterator(); iterador.hasNext(); ) {
-            posicionDelCrucero = iterador.next();
-            if (posicionDelCrucero.esIgualA(posicionComparada)) {
+        for(Posicion posicionIterada: posiciones){
+            if (posicionIterada.equals(posicionComparada)) {
                 salida = true;
             }
         }
@@ -31,7 +35,7 @@ public class Barco {
         for (ListIterator<Posicion> iterador = posiciones.listIterator(); iterador.hasNext(); ) {
             posicionRecorrida = iterador.next();
 
-            if (posicionRecorrida.getEstado() == Disparo.TOCADO) {
+            if (posicionRecorrida.getEstado() == EstadoDeUnaPosicion.TOCADO) {
                 contadorDeTocados++;
 
             }
@@ -48,9 +52,16 @@ public class Barco {
         for (ListIterator<Posicion> iterador = posiciones.listIterator(); iterador.hasNext(); ) {
             posicionRecorrida = iterador.next();
 
-            if (posicionRecorrida.esIgualA(posicionDeDisparo)) {
+            if (posicionRecorrida.equals(posicionDeDisparo)) {
                 posicionRecorrida.tocado();
             }
         }
     }
+
+    public int getTamanio() {
+        return tamanio;
+    }
+
+    public abstract void agregarPosicion(Posicion posicion);
+
 }

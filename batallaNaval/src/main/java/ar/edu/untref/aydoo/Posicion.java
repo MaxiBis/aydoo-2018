@@ -4,20 +4,14 @@ public class Posicion {
 
     private int posicionVertical;
     private int posicionHorizontal;
-    private Barco elBarcoQueTieneLaPosicion;
-    private boolean esAgua;
-    private Disparo estado;
+    private Barco barcoEn;
+    private EstadoDeUnaPosicion estado;
 
 
     public Posicion(int posicionHorizontal, int posicionVertical) {
         this.posicionHorizontal = posicionHorizontal;
         this.posicionVertical = posicionVertical;
-        this.esAgua = true;
-        this.estado = Disparo.AGUA;
-    }
-
-    public boolean esAgua() {
-        return this.esAgua;
+        this.estado = EstadoDeUnaPosicion.AGUA;
     }
 
     public int getPosicionVertical() {
@@ -26,10 +20,6 @@ public class Posicion {
 
     public int getPosicionHorizontal() {
         return posicionHorizontal;
-    }
-
-    public void setEsAgua(boolean esAgua) {
-        this.esAgua = esAgua;
     }
 
     public void setPosicion(int j, int i) {
@@ -45,30 +35,27 @@ public class Posicion {
         this.posicionVertical = posicionVertical;
     }
 
-    public boolean esIgualA(Posicion posicionAComparar) {
-        if (this.getPosicionVertical() == posicionAComparar.getPosicionVertical() && this.getPosicionHorizontal() == posicionAComparar.getPosicionHorizontal())
-            return true;
-         else
-            return false;
+    public boolean equals(Posicion posicionAComparar) {
+        return this.getPosicionVertical() == posicionAComparar.getPosicionVertical() && this.getPosicionHorizontal() == posicionAComparar.getPosicionHorizontal();
     }
 
     public void ponerBarco(Barco barquito) {
-        this.elBarcoQueTieneLaPosicion = barquito;
+        this.barcoEn = barquito;
     }
 
-    public void setEstado(Disparo estado) {
+    public void setEstado(EstadoDeUnaPosicion estado) {
         this.estado = estado;
     }
 
     public Barco getBarco() {
-        return elBarcoQueTieneLaPosicion;
+        return barcoEn;
     }
 
-    public Disparo getEstado() {
+    public EstadoDeUnaPosicion getEstado() {
         return estado;
     }
 
     public void tocado() {
-        this.estado = Disparo.TOCADO;
+        this.estado = EstadoDeUnaPosicion.TOCADO;
     }
 }

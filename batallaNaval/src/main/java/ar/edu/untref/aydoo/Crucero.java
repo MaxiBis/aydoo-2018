@@ -6,10 +6,13 @@ public class Crucero extends Barco {
 
 
     public Crucero() {
-        this.posiciones = new ArrayList<Posicion>();
+        super();
+        this.tamanio = 2;
     }
 
     public void agregarPosicion(Posicion posicion) {
-        this.posiciones.add(posicion);
+        if (posiciones.size() < 2) {
+            this.posiciones.add(posicion);
+        }
     }
 }

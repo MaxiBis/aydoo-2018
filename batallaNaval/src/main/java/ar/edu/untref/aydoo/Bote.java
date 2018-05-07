@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Bote extends Barco {
 
     public Bote() {
-        this.posiciones = new ArrayList<Posicion>();
+        super();
+        this.tamanio = 1;
     }
 
-    public Posicion getPosicion() {
-        return this.posiciones.get(0);
-    }
 
     public void agregarPosicion(Posicion posicion) {
-        this.posiciones.add(posicion);
+        if(posiciones.isEmpty()) {
+            this.posiciones.add(posicion);
+        }
     }
 }
