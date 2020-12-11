@@ -11,6 +11,6 @@ public class FooTest
     {
         Foo foo = new Foo();
         String result = foo.doFoo();
-        Assert.assertEquals("foo", result);
+        Assert.assertEquals("faa", result);
     }
 }
